@@ -1,0 +1,11 @@
+﻿.fizz, .wizz {
+    color: blue; 
+}
+
+.buzz, .wuzz {
+    color: Green;    
+}
+
+ul {
+    list-style-type: none;
+}

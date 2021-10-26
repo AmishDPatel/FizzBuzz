@@ -8,23 +8,23 @@ using System.Threading.Tasks;
 
 namespace FizzBuzz.Service.Service
 {
-    public class DividableFiveRuleService : IRuleService
+    public class DivisibleFiveRuleService : IRuleService
     {
         private readonly ICheckDayService checkDayService;
 
-        public DividableFiveRuleService(ICheckDayService checkDayService)
+        public DivisibleFiveRuleService(ICheckDayService checkDayService)
         {
             this.checkDayService = checkDayService;
         }
 
-        public bool IsDividable(int number)
+        public bool IsDivisible(int number)
         {
-            return number % 3 == 0;
+            return number % 5 == 0;
         }
 
         public string GetValue()
         {
-            return this.checkDayService.IsDayMatch() ? Constants.Wizz : Constants.Fizz;
+            return this.checkDayService.IsDayMatch() ? Constants.Wuzz : Constants.Buzz;
         }
     }
 }

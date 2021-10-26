@@ -34,8 +34,8 @@ namespace FizzBuzz.DependencyResolution {
                 });
             //For<IExample>().Use<Example>();
             For<ICheckDayService>().Use<CheckDayService>().Ctor<string>().Is(ConfigurationManager.AppSettings["DayOfWeek"].ToString());
-            For<IRuleService>().Use<DividableThreeRuleService>();
-            For<IRuleService>().Use<DividableFiveRuleService>();
+            For<IRuleService>().Use<DivisibleThreeRuleService>();
+            For<IRuleService>().Use<DivisibleFiveRuleService>();
             For<IFizzBuzzService>().Use<FizzBuzzService>();
         }
 

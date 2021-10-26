@@ -26,6 +26,7 @@ namespace FizzBuzz
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/PagedList.css",
+                       "~/Content/FizzBuzzStyle.css",
                       "~/Content/site.css"));
         }
     }

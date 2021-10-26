@@ -16,13 +16,13 @@ namespace FizzBuzz.Service.Service
             this.fizzBuzzRules = fizzBuzzRules;
         }
 
-        public IList<string> GetFizzBuzzData(int inputNumber)
+        public IList<string> GetData(int inputNumber)
         {
             var resultList = new List<string>();            
 
             for (var count = 1; count <= inputNumber; count++)
             {
-                var matchedRules = this.fizzBuzzRules.Where(x => x.IsDividable(count)).ToList();                
+                var matchedRules = this.fizzBuzzRules.Where(x => x.IsDivisible(count)).ToList();                
                 resultList.Add(matchedRules.Any() ? string.Join(" ", matchedRules.Select(r => r.GetValue())) : count.ToString());
             }
 

@@ -129,7 +129,7 @@
       <Name>FizzBuzz.Utility</Name>
     </ProjectReference>
     <ProjectReference Include="..\FizzBuzz\FizzBuzz.csproj">
-      <Project>{26503563-2F34-4EE6-9ED1-3779346CFF3B}</Project>
+      <Project>{26503563-2f34-4ee6-9ed1-3779346cff3b}</Project>
       <Name>FizzBuzz</Name>
     </ProjectReference>
   </ItemGroup>

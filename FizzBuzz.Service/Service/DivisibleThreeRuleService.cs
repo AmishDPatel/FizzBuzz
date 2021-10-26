@@ -3,23 +3,23 @@ using FizzBuzz.Utility.Common;
 
 namespace FizzBuzz.Service.Service
 {
-    public class DividableThreeRuleService : IRuleService
+    public class DivisibleThreeRuleService : IRuleService
     {
         private readonly ICheckDayService checkDayService;
 
-        public DividableThreeRuleService(ICheckDayService checkDayService)
+        public DivisibleThreeRuleService(ICheckDayService checkDayService)
         {
             this.checkDayService = checkDayService;
         }
 
-        public bool IsDividable(int number)
+        public bool IsDivisible(int number)
         {
-            return number % 5 == 0;
+            return number % 3 == 0;
         }
 
         public string GetValue()
         {
-            return this.checkDayService.IsDayMatch() ? Constants.Wuzz : Constants.Buzz;
+            return this.checkDayService.IsDayMatch() ? Constants.Wizz : Constants.Fizz; 
         }
     }
 }

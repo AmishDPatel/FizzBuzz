@@ -42,7 +42,7 @@ namespace FizzBuzz.Controllers
 
         private IPagedList<string> PagedList(int number, int pageNumber)
         {
-            var resultList = this.fizzBuzzService.GetFizzBuzzData(number).ToPagedList(pageNumber, pageSize);
+            var resultList = this.fizzBuzzService.GetData(number).ToPagedList(pageNumber, pageSize);
             return resultList;
         }
     }

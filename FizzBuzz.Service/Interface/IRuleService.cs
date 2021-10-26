@@ -2,7 +2,7 @@
 {
     public interface IRuleService
     {
-        bool IsDividable(int number);
+        bool IsDivisible(int number);
         string GetValue();
     }
 }

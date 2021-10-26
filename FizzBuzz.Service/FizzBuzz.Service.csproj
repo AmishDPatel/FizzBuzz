@@ -49,8 +49,8 @@
     <Compile Include="Interface\IRuleService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\CheckDayService.cs" />
-    <Compile Include="Service\DividableFiveRuleService.cs" />
-    <Compile Include="Service\DividableThreeRuleService.cs" />
+    <Compile Include="Service\DivisibleFiveRuleService.cs" />
+    <Compile Include="Service\DivisibleThreeRuleService.cs" />
     <Compile Include="Service\FizzBuzzService.cs" />
   </ItemGroup>
   <ItemGroup>

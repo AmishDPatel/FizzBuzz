@@ -32,7 +32,7 @@ namespace FizzBuzz.Tests.Controllers
                 Number = 3
             };
 
-            this.mockFizzBuzzService.Setup(p => p.GetFizzBuzzData(It.IsAny<int>())).Returns(this.expectedList);
+            this.mockFizzBuzzService.Setup(p => p.GetData(It.IsAny<int>())).Returns(this.expectedList);
 
             var result = this.fizzBuzzController.Display(model) as ViewResult;
 
@@ -41,11 +41,21 @@ namespace FizzBuzz.Tests.Controllers
             Assert.AreEqual(3, this.expectedList.Count);
         }
 
+        [Test]
+        public void Display_WithInvalidModelState()
+        {
+            var model = new FizzBuzzModel() { };
+            this.fizzBuzzController.ViewData.ModelState.AddModelError("Limit", Constants.EnterNumberMessage);
+            var result = fizzBuzzController.Display(model) as ViewResult;
+
+            Assert.AreEqual(result.ViewName, Constants.ActionName);
+        }
+
         [TestCase(5, (object)new string[] { "1", "2", "fizz", "4", "buzz" })]
         [TestCase(15, (object)new string[] { "1", "2", "fizz", "4", "buzz", "fizz", "7", "8", "fizz", "buzz", "11", "fizz", "13", "14", "fizz buzz" })]
         public void Post_DisplayTest(int value, string[] expectedResult)
         {
-            this.mockFizzBuzzService.Setup(x => x.GetFizzBuzzData(It.IsAny<int>())).Returns(expectedResult);
+            this.mockFizzBuzzService.Setup(x => x.GetData(It.IsAny<int>())).Returns(expectedResult);
             var fizzBuzzController = new FizzBuzzController(this.mockFizzBuzzService.Object);
             var output = fizzBuzzController.Display(new FizzBuzzModel() { Number = value }) as ViewResult;
             var outputList = (FizzBuzzModel)output.ViewData.Model;
