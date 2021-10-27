@@ -27,15 +27,18 @@ namespace FizzBuzz.Tests.Controllers
         [Test]
         public void Display_InputNumberThree()
         {
+            // Arrange
             var model = new FizzBuzzModel()
             {
                 Number = 3
             };
 
             this.mockFizzBuzzService.Setup(p => p.GetData(It.IsAny<int>())).Returns(this.expectedList);
+            
+            // Act
+            var result = this.fizzBuzzController.DisplayFizzBuzz(model) as ViewResult;
 
-            var result = this.fizzBuzzController.Display(model) as ViewResult;
-
+            // Assert
             Assert.AreEqual(result.ViewName, Constants.ActionName);
             var resultModel = result.Model as FizzBuzzModel;
             Assert.AreEqual(3, this.expectedList.Count);
@@ -44,10 +47,14 @@ namespace FizzBuzz.Tests.Controllers
         [Test]
         public void Display_WithInvalidModelState()
         {
+            // Arrange
             var model = new FizzBuzzModel() { };
             this.fizzBuzzController.ViewData.ModelState.AddModelError("Limit", Constants.EnterNumberMessage);
-            var result = fizzBuzzController.Display(model) as ViewResult;
 
+            // Act
+            var result = fizzBuzzController.DisplayFizzBuzz(model) as ViewResult;
+
+            // Assert
             Assert.AreEqual(result.ViewName, Constants.ActionName);
         }
 
@@ -55,11 +62,15 @@ namespace FizzBuzz.Tests.Controllers
         [TestCase(15, (object)new string[] { "1", "2", "fizz", "4", "buzz", "fizz", "7", "8", "fizz", "buzz", "11", "fizz", "13", "14", "fizz buzz" })]
         public void Post_DisplayTest(int value, string[] expectedResult)
         {
+            // Arrange
             this.mockFizzBuzzService.Setup(x => x.GetData(It.IsAny<int>())).Returns(expectedResult);
             var fizzBuzzController = new FizzBuzzController(this.mockFizzBuzzService.Object);
-            var output = fizzBuzzController.Display(new FizzBuzzModel() { Number = value }) as ViewResult;
+            
+            // Act
+            var output = fizzBuzzController.DisplayFizzBuzz(new FizzBuzzModel() { Number = value }) as ViewResult;
             var outputList = (FizzBuzzModel)output.ViewData.Model;
 
+            // Assert
             Assert.AreEqual(expectedResult.Length, outputList.Number);
         }
     }

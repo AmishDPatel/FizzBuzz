@@ -27,6 +27,7 @@ namespace FizzBuzz.Service.Test
         [TestCase(15, true)]
         public void IsDivisible_WhenNumberMultipleOfFive_ReturnTrue(int number, bool result)
         {
+            // Assert
             Assert.AreEqual(result, this.divisibleFiveRule.IsDivisible(number));
         }
 
@@ -34,8 +35,13 @@ namespace FizzBuzz.Service.Test
         [TestCase(true, Constants.Wuzz)]
         public void Display_WhenNotWednesday_ReturnBuzz(bool input, string output)
         {
+            // Arrange
             this.mockCheckDay.Setup(x => x.IsDayMatch()).Returns(input);
+
+            // Act
             var result = this.divisibleFiveRule.GetValue();
+
+            // Assert
             Assert.AreEqual(output, result);
         }
     }

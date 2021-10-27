@@ -13,91 +13,104 @@ namespace FizzBuzz.Service.Test
 {
     [TestFixture]
     class FizzBuzzServiceTest
-    {
-        private IList<IRuleService> rules;
-        private Mock<IRuleService> ruleMock;
-        private FizzBuzzService fizzBuzzBervice;
-        private Mock<IRuleService> fizzRule;
-        private Mock<IRuleService> buzzRule;
-
-        [SetUp]
-        public void Initialise()
-        {
-            fizzRule = new Mock<IRuleService>();
-            buzzRule = new Mock<IRuleService>();
-
-            rules = new List<IRuleService>()
-            {
-                fizzRule.Object,
-                buzzRule.Object
-            };
-
-            fizzBuzzBervice = new FizzBuzzService(rules);
-        }
+    {        
+        private Mock<IRuleService> mockRule;        
 
         [TestCase(0, (object)new string[] { })]
         [TestCase(1, (object)new string[] { "1" })]
         [TestCase(2, (object)new string[] { "1", "2" })]
         public void GetDataTest(int inputValue, string[] expectedResult)
         {
-            this.ruleMock = new Mock<IRuleService>();
+            // Arrange
+            this.mockRule = new Mock<IRuleService>();
 
-            this.ruleMock.Setup(x => x.IsDivisible(inputValue)).Returns(false);
+            this.mockRule.Setup(x => x.IsDivisible(inputValue)).Returns(false);
 
-            this.ruleMock.Setup(y => y.GetValue()).Returns(string.Empty);
+            this.mockRule.Setup(y => y.GetValue()).Returns(string.Empty);
 
             var businesrule = new[]
             {
-                this.ruleMock.Object,
-                this.ruleMock.Object
+                this.mockRule.Object,
+                this.mockRule.Object
 
             };
             var results = new FizzBuzzService(businesrule);
-
+           
+            // Act
             var actual = results.GetData(inputValue);
 
+            // Assert
             Assert.AreEqual(actual, expectedResult);
         }
 
         [TestCase(3, Constants.Fizz)]
-        public void GetFizzBuzzData_ReturnFizz_WhenInputNumberIsThree(int inputValue, string expectedResult)
+        public void GetFizzBuzzData_WhenInputNumberIsThree_ReturnFizz(int inputValue, string expectedResult)
         {
-            this.ruleMock = new Mock<IRuleService>();
+            // Arrange
+            this.mockRule = new Mock<IRuleService>();
 
-            this.ruleMock.Setup(x => x.IsDivisible(inputValue)).Returns(true);
+            this.mockRule.Setup(x => x.IsDivisible(inputValue)).Returns(true);
 
-            this.ruleMock.Setup(y => y.GetValue()).Returns(Constants.Fizz);
+            this.mockRule.Setup(y => y.GetValue()).Returns(Constants.Fizz);
 
             var businesrule = new[]
             {
-                this.ruleMock.Object
+                this.mockRule.Object
             };
             var results = new FizzBuzzService(businesrule);
 
+            // Act
             var actual = results.GetData(inputValue);
 
+            // Assert
             Assert.AreEqual(actual[2], expectedResult);
         }
 
 
         [TestCase(5, Constants.Buzz)]
-        public void GetFizzBuzzData_ReturnBuzz_WhenInputNumberIsFive(int inputValue, string expectedResult)
+        public void GetFizzBuzzData_WhenInputNumberIsFive_ReturnBuzz(int inputValue, string expectedResult)
         {
-            this.ruleMock = new Mock<IRuleService>();
+            // Arrange
+            this.mockRule = new Mock<IRuleService>();
 
-            this.ruleMock.Setup(x => x.IsDivisible(inputValue)).Returns(true);
+            this.mockRule.Setup(x => x.IsDivisible(inputValue)).Returns(true);
 
-            this.ruleMock.Setup(y => y.GetValue()).Returns(Constants.Buzz);
+            this.mockRule.Setup(y => y.GetValue()).Returns(Constants.Buzz);
 
             var businesrule = new[]
             {
-                this.ruleMock.Object
+                this.mockRule.Object
             };
             var results = new FizzBuzzService(businesrule);
 
+            // Act
             var actual = results.GetData(inputValue);
 
+            // Assert
             Assert.AreEqual(actual[4], expectedResult);
+        }
+
+        [TestCase(15, Constants.Fizz + " " + Constants.Buzz)]
+        public void GetFizzBuzzData_WhenInputNumberIsDivisibleByThreeAndFive_ReturnFizzBuzz(int inputValue, string expectedResult)
+        {
+            // Arrange
+            this.mockRule = new Mock<IRuleService>();
+
+            this.mockRule.Setup(x => x.IsDivisible(inputValue)).Returns(true);
+
+            this.mockRule.Setup(y => y.GetValue()).Returns(Constants.Fizz + " " + Constants.Buzz);
+
+            var businesrule = new[]
+            {
+                this.mockRule.Object
+            };
+            var results = new FizzBuzzService(businesrule);
+
+            // Act
+            var actual = results.GetData(inputValue);
+
+            // Assert
+            Assert.AreEqual(actual[14], expectedResult);
         }
     }
 }

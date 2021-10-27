@@ -1,11 +1,20 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿// <copyright file="BundleConfig.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace FizzBuzz
 {
+    using System.Web.Optimization;
+
+    /// <summary>
+    /// BundleConfig.
+    /// </summary>
     public class BundleConfig
     {
-        // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
+        /// <summary>
+        /// RegisterBundles.
+        /// </summary>
+        /// <param name="bundles">BundleCollection.</param>
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
@@ -26,7 +35,7 @@ namespace FizzBuzz
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/PagedList.css",
-                       "~/Content/FizzBuzzStyle.css",
+                      "~/Content/FizzBuzzStyle.css",
                       "~/Content/site.css"));
         }
     }

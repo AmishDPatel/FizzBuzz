@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="CheckDayServiceTest.cs" />
     <Compile Include="DivisibleFiveRuleServiceTest.cs" />
+    <Compile Include="DivisibleThreeAndFiveRuleServiceTest.cs" />
     <Compile Include="DivisibleThreeRuleServiceTest.cs" />
     <Compile Include="FizzBuzzServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -23,7 +23,8 @@ namespace FizzBuzz.Service.Service
             for (var count = 1; count <= inputNumber; count++)
             {
                 var matchedRules = this.fizzBuzzRules.Where(x => x.IsDivisible(count)).ToList();                
-                resultList.Add(matchedRules.Any() ? string.Join(" ", matchedRules.Select(r => r.GetValue())) : count.ToString());
+                resultList.Add(matchedRules.Any() ? matchedRules.Select(r => r.GetValue()).LastOrDefault() : count.ToString());
+                //resultList.Add(matchedRules.Any() ? string.Join(" ", matchedRules.Select(r => r.GetValue())) : count.ToString());
             }
 
             return resultList;

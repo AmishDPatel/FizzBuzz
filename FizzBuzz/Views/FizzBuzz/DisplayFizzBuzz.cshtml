@@ -5,14 +5,14 @@
 }
 
 <div class="jumbotron">
-    @using (Html.BeginForm("Display", "FizzBuzz", FormMethod.Post))
+    @using (Html.BeginForm("DisplayFizzBuzz", "FizzBuzz", FormMethod.Post))
     {
-        @Html.Label("Enter Number", new { @class = "text-primary" })
+        @Html.LabelFor(m => m.Number, new { @class = "text-primary" })       
         <span></span>
         @Html.TextBoxFor(m => m.Number)
         <input type="submit" class="btn btn-primary btn-sm" value="Submit" />
-        @Html.ValidationMessageFor(m => m.Number) 
-        
+        @Html.ValidationMessageFor(m => m.Number)
+
         if (Model.FizzBuzzListValue != null)
         {
             <ul>

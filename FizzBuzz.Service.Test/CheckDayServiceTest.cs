@@ -14,24 +14,39 @@ namespace FizzBuzz.Service.Test
         [Test]
         public void IsDayMatchingT_WhenDayIsEmpty_ReturnFalse()
         {
+            // Arrange
             var day = new CheckDayService("");
+            
+            // Act
             var actualResult = day.IsDayMatch();
+            
+            // Assert
             Assert.IsFalse(actualResult);
         }
 
         [Test]
         public void IsDayMatching_WhenDayIsToday_ReturnTrue()
         {
+            // Arrange
             var day = new CheckDayService(DateTime.Now.DayOfWeek.ToString());
+
+            // Act
             var actualResult = day.IsDayMatch();
+
+            // Assert
             Assert.IsTrue(actualResult);
         }
 
         [Test]
         public void IsDayMatching_WhenDayIsTomorrow_ReturnFalse()
         {
+            // Arrange
             var day = new CheckDayService(DateTime.Now.AddDays(1).DayOfWeek.ToString());
+
+            // Act
             var actualResult = day.IsDayMatch();
+
+            // Assert
             Assert.IsFalse(actualResult);
         }
     }

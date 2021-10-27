@@ -1,14 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
+﻿// <copyright file="RouteConfig.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace FizzBuzz
 {
+    using System.Web.Mvc;
+    using System.Web.Routing;
+
+    /// <summary>
+    /// RouteConfig.
+    /// </summary>
     public class RouteConfig
     {
+        /// <summary>
+        /// RegisterRoutes.
+        /// </summary>
+        /// <param name="routes">RouteCollection.</param>
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
@@ -16,8 +23,7 @@ namespace FizzBuzz
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "FizzBuzz", action = "Index", id = UrlParameter.Optional }
-            );
+                defaults: new { controller = "FizzBuzz", action = "DisplayFizzBuzz", id = UrlParameter.Optional });
         }
     }
 }
