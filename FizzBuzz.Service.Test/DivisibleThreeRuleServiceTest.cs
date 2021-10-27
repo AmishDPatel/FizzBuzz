@@ -1,29 +1,39 @@
-﻿using FizzBuzz.Service.Interface;
-using FizzBuzz.Service.Service;
-using FizzBuzz.Utility.Common;
-using Moq;
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="DivisibleThreeRuleServiceTest.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace FizzBuzz.Service.Test
 {
+    using FizzBuzz.Service.Interface;
+    using FizzBuzz.Service.Service;
+    using FizzBuzz.Utility.Common;
+    using Moq;
+    using NUnit.Framework;
+
+    /// <summary>
+    /// Test class of DivisibleThreeRuleServiceTest.
+    /// </summary>
     [TestFixture]
     public class DivisibleThreeRuleServiceTest
     {
         private DivisibleThreeRuleService divisibleThreeRule;
         private Mock<ICheckDayService> mockCheckDay;
 
+        /// <summary>
+        /// Initialise the setup.
+        /// </summary>
         [SetUp]
         public void Initialise()
         {
             this.mockCheckDay = new Mock<ICheckDayService>();
             this.divisibleThreeRule = new DivisibleThreeRuleService(this.mockCheckDay.Object);
-        }       
-        
+        }
+
+        /// <summary>
+        /// Test of when number multiple of three.
+        /// </summary>
+        /// <param name="number">number.</param>
+        /// <param name="result">result.</param>
         [TestCase(1, false)]
         [TestCase(2, false)]
         [TestCase(3, true)]
@@ -39,16 +49,21 @@ namespace FizzBuzz.Service.Test
             Assert.AreEqual(result, output);
         }
 
+        /// <summary>
+        /// Test of when not wednesday.
+        /// </summary>
+        /// <param name="input">input.</param>
+        /// <param name="output">output.</param>
         [TestCase(false, Constants.Fizz)]
         [TestCase(true, Constants.Wizz)]
         public void Display_WhenNotWednesday_ReturnFizz(bool input, string output)
         {
             // Arrange
-            mockCheckDay.Setup(x => x.IsDayMatch()).Returns(input);
-            
+            this.mockCheckDay.Setup(x => x.IsDayMatch()).Returns(input);
+
             // Act
-            var result = divisibleThreeRule.GetValue();
-            
+            var result = this.divisibleThreeRule.GetValue();
+
             // Assert
             Assert.AreEqual(output, result);
         }
